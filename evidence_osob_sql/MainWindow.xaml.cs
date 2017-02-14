@@ -31,7 +31,8 @@ namespace evidence_osob_sql
             item.RodneCislo = "56104651/5641";
             item.Gender = "Apache";
             item.BirthDate = new DateTime(1990,2,10);
-            item.Added = new DateTime().ToString();
+            item.Added = DateTime.Today.ToString();
+            //http://stackoverflow.com/questions/9/how-do-i-calculate-someones-age-in-c
             Database.SaveItemAsync(item);
 
             var itemsFromDb = Database.GetItemsAsync().Result;
