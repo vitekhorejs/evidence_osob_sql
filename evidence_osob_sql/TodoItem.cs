@@ -9,18 +9,23 @@ namespace evidence_osob_sql
 {
     public class TodoItem
     {
+        int _age;
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
-        public string Text { get; set; }
-        public int Year { get; set; }
-        public TodoItem()
+        public DateTime BirthDate { get; set; }
+        public string RodneCislo { get; set; }
+        public string Gender { get; set; }
+        public string Added { get; set; }
+        public string Edited { get; set; }
+        /*public int Age
         {
-        }
+            get=
+        }*/
         public override string ToString()
         {
-            return "ID" + ID + " Name " + Name + " SurName " + SurName + " Text " + Text + " Year " + Year;
+            return "ID:" + ID + " Name: " + Name + " SurName: " + SurName + " RodneCislo: " + RodneCislo + " Datum narození: " + BirthDate + " Pohlaví: " + Gender + " Přidáno: " + Added;
         }
     }
 }
