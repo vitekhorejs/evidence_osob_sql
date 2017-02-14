@@ -33,6 +33,7 @@ namespace evidence_osob_sql
             item.BirthDate = new DateTime(1990,2,10);
             item.Added = DateTime.Today.ToString();
             //http://stackoverflow.com/questions/9/how-do-i-calculate-someones-age-in-c
+            // upravit automatickou korekci zadavání u rodného čísla - lomítko
             Database.SaveItemAsync(item);
 
             var itemsFromDb = Database.GetItemsAsync().Result;
