@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using System.Text.RegularExpressions;
 
 namespace evidence_osob_sql
 {
@@ -20,10 +21,21 @@ namespace evidence_osob_sql
             return database.Table<TodoItem>().ToListAsync();
         }
 
-        public Task<TodoItem> GetItemAsync(int id)
+        /*public Task<TodoItem> GetItemAsync(int id)
         {
             return database.Table<TodoItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
-        }
+        }*/
+
+        /*public Task<List<TodoItem>> GetItemAsync(string value) ////////////////////////////////////////////////////////////////
+        {
+            if(value == "" || value == null)
+            {
+                return database.Table<TodoItem>().ToListAsync();
+            }
+            bool m = Regex.IsMatch(value, @"\d");
+            //return database.Table<TodoItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }*/
+
         public Task<int> SaveItemAsync(TodoItem item)
         {
             if (item.ID != 0)

@@ -25,7 +25,8 @@ namespace evidence_osob_sql
         }*/
         public override string ToString()
         {
-            return "ID:" + ID + " Name: " + Name + " SurName: " + SurName + " RodneCislo: " + RodneCislo + " Datum narození: " + BirthDate + " Pohlaví: " + Gender + " Přidáno: " + Added;
+            return Name + " " + SurName + "  " + BirthDate.ToString("dd/MM/yyyy");
+            //return "ID:" + ID + " Name: " + Name + " SurName: " + SurName + " RodneCislo: " + RodneCislo + " Datum narození: " + BirthDate + " Pohlaví: " + Gender + " Přidáno: " + Added + " upraveno: " + Edited;
         }
     }
 }
