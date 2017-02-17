@@ -62,11 +62,16 @@ namespace evidence_osob_sql
             }
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        private void DisplayResults()
         {
             var itemsFromDb = Database.GetItemsAsync().Result;
 
             listwiew.ItemsSource = itemsFromDb;
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayResults();
         }
         int x = 0;
         private void button_Click(object sender, RoutedEventArgs e)
@@ -108,7 +113,7 @@ namespace evidence_osob_sql
                 TodoItem item = new TodoItem();
                 item.Name = Name.Text;
                 item.SurName = SurName.Text;
-                item.RodneCislo = RodneCislo1.Text + RodneCislo2.Text;
+                item.RodneCislo = RodneCislo1.Text +"/"+ RodneCislo2.Text;
                 item.Gender = Gender.Text;
                 //var inMyString = BirthDate.SelectedDate.Value.ToShortDateString();
                 item.BirthDate = BirthDate.SelectedDate.Value;
@@ -116,9 +121,7 @@ namespace evidence_osob_sql
                 item.Edited = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 Database.SaveItemAsync(item);
 
-                var itemsFromDb = Database.GetItemsAsync().Result;
-
-                listwiew.ItemsSource = itemsFromDb;
+                DisplayResults();
 
             }
         }
