@@ -27,8 +27,6 @@ namespace evidence_osob_sql
             MainPage MainPage = new MainPage();
             frame.NavigationService.Navigate(MainPage);
             
-        }
-
-        
+        }        
     }
 }

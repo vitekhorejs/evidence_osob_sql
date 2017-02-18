@@ -6,9 +6,34 @@
       xmlns:local="clr-namespace:evidence_osob_sql"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="900"
-      Title="Page1" Background="White">
+      Title="Page1" Height="500" Width="900" MaxHeight="500" MaxWidth="900" MinHeight="500" MinWidth="900" Background="#FFF7C77F">
 
     <Grid>
-        
+        <StackPanel  Margin="15" Background="White">
+            <Label x:Name="Name_label" Content="Jméno:" FontSize="16" FontWeight="Bold" Margin="0,5,0,0" HorizontalAlignment="Center" Width="356"/>
+            <TextBox x:Name="Name" Width="358" HorizontalAlignment="Center" Height="25" FontSize="14" />
+            <Label x:Name="SurName_label" Content="Příjmení:"  FontSize="16" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" Width="356" />
+            <TextBox x:Name="SurName" Width="358" HorizontalAlignment="Center" Height="25" FontSize="14" />
+            <Label x:Name="RodneCislo_label" Content="Rodné číslo:"  FontSize="16" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" Width="356"/>
+            <Label x:Name="RodneCislo" Content="" Margin="0" FontSize="14" HorizontalAlignment="Center" Width="356" Height="25" />
+            <Label x:Name="BirthDate_label" Content="Datum narození:" FontSize="16" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" Width="356" />
+            <Label x:Name="BirthDate" Content="" Margin="0" FontSize="14" HorizontalAlignment="Center" Width="356" Height="25" />
+            <Label x:Name="Gender_label" Content="Pohlaví:" FontSize="16" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" Width="356" />
+            <Label x:Name="Gender" Content="" Margin="0" FontSize="14" HorizontalAlignment="Center" Width="356" Height="25"/>
+            <Label x:Name="Added_label" Content="Vytvořeno:" FontSize="16" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" Width="356" />
+            <Label x:Name="Added" Content="" Margin="0" FontSize="14" HorizontalAlignment="Center" Width="356" Height="25" />
+            <Label x:Name="Edited_label" Content="Upraveno:" FontSize="16" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" Width="356"/>
+            <Label x:Name="Edited" Content="" Margin="0" FontSize="14" HorizontalAlignment="Center" Width="356" Height="25" />
+            <Label x:Name="Age_label" Content="Věk:" FontSize="16" FontWeight="Bold" Margin="0" HorizontalAlignment="Center" Width="356"/>
+            <Label x:Name="Age" Content="" Margin="0" FontSize="14" HorizontalAlignment="Center" Width="356" Height="25" />
+
+            <StackPanel Margin="0,5,0,0" Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Click="DeleteButton_Click" x:Name="Delete_Button" Width="130" Height="50" Content="Smazat" Background="#FFFF3838" Margin="0,-125,240,0" />
+                <Button Click="UpdateButton_Click" x:Name="Update_Button" Width="130" Height="50" Content="Upravit" Background="#FF52BF5C" Margin="240,-125,0,0" />
+            </StackPanel>
+
+
+        </StackPanel>
+
     </Grid>
 </Page>

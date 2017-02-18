@@ -24,5 +24,31 @@ namespace evidence_osob_sql
         {
             InitializeComponent();
         }
+        public Page1(TodoItem todoItem)
+        {
+            InitializeComponent();
+            Name.Text = todoItem.Name;
+            SurName.Text = todoItem.SurName;
+            RodneCislo.Content = todoItem.RodneCislo;
+            BirthDate.Content = todoItem.BirthDate;
+            Gender.Content = todoItem.Gender;
+            Added.Content = todoItem.Added;
+            Edited.Content = todoItem.Edited;
+            Age.Content = todoItem.Age;
+            //Number.Text = todoItem.GetNumber.ToString();
+        }
+
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            ListViewItem item = sender as ListViewItem;
+            object obj = item.Content;
+
+            await Database.DeleteItemAsync(obj as TodoItem);
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -40,13 +40,23 @@ namespace evidence_osob_sql
 
             listwiew.ItemsSource = itemsFromDb;
         }
-        protected void ListView_MouseOneClick(object sender, RoutedEventArgs e)
+
+        public void listViewItem_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Hello, world!", "My App", MessageBoxButton.OK, MessageBoxImage.Information);
+            //Page1 Page1 = new Page1();
+            //this.NavigationService.Navigate(Page1);
+            ListViewItem item = sender as ListViewItem;
+            object obj = item.Content;
             Page1 Page1 = new Page1();
-            this.NavigationService.Navigate(Page1);
+            this.NavigationService.Navigate(new Page1(obj as TodoItem));
         }
 
+        /*private void MySelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Debug.WriteLine("Selected: {0}", e.AddedItems[0]);
+            MessageBox.Show("Hello, world!", "My App", MessageBoxButton.OK, MessageBoxImage.Information);
+        }*/
 
         private static TodoItemDatabase _database;
         public static TodoItemDatabase Database
