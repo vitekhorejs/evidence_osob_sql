@@ -43,9 +43,6 @@ namespace evidence_osob_sql
 
         public void listViewItem_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("Hello, world!", "My App", MessageBoxButton.OK, MessageBoxImage.Information);
-            //Page1 Page1 = new Page1();
-            //this.NavigationService.Navigate(Page1);
             ListViewItem item = sender as ListViewItem;
             object obj = item.Content;
             Page1 Page1 = new Page1();
