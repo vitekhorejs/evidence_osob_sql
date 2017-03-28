@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
+
 
 namespace evidence_osob_sql
 {
@@ -78,18 +80,18 @@ namespace evidence_osob_sql
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("", "My App", MessageBoxButton.OK, MessageBoxImage.Information);
             TodoItem item = new TodoItem();
             item.ID = ID;
             item.Name = Name.Text;
             item.SurName = SurName.Text;
+            //DateTime BirthDate1 = DateTime.ParseExact(BirthDate.Content.ToString(), "dd / MM / yyyy HH: mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            item.BirthDate = birthdate;
             item.RodneCislo = RodneCislo.Content.ToString();
-            //item.BirthDate = new DateTime(birthdate.);
             item.Gender = Gender.Content.ToString();
-            //item.Edited = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            //item.Added = ;
+            item.Edited = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            item.Added = Added.Content.ToString();
             Database.SaveItemAsync(item);
-
+            MessageBox.Show("Záznam byl aktualizován", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
