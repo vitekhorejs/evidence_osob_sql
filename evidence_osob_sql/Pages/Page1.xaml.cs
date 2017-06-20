@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Globalization;
-
 
 namespace evidence_osob_sql
 {
@@ -24,7 +22,6 @@ namespace evidence_osob_sql
     {
         public object obj;
         public int ID;
-        public DateTime birthdate;
         public Page1()
         {
             InitializeComponent();
@@ -32,19 +29,30 @@ namespace evidence_osob_sql
         public Page1(TodoItem todoItem)
         {
             InitializeComponent();
+            //obj = todoItem;
+            ID = todoItem.Id;
             obj = todoItem;
-            ID = todoItem.ID;
+            ID = todoItem.Id;
             Name.Text = todoItem.Name;
-            SurName.Text = todoItem.SurName;
-            RodneCislo.Content = todoItem.RodneCislo;
-            BirthDate.Content = todoItem.BirthDate;
-            birthdate = todoItem.BirthDate;
-            Gender.Content = todoItem.Gender;
-            Added.Content = todoItem.Added;
-            Edited.Content = todoItem.Edited;
-            Age.Content = todoItem.Age;
-            //Number.Text = todoItem.GetNumber.ToString();
+            Cost.Text = todoItem.Cost;
+
+            var vysledky = Database.GetCatItemsAsyncbyItemID(ID).Result;
+
+            List<Category> kategorie = new List<Category>();
+
+            foreach(CategoryItem catitem in vysledky)
+            {
+                var vysledkyy = Database.GetCategoryByIdAsync(catitem.ID_Category).Result;
+                //kategorie = vysledkyy;
+                kategorie.Add(vysledkyy);
+            }
+
+
+
+            listbox.ItemsSource = kategorie;
         }
+
+
 
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -54,14 +62,22 @@ namespace evidence_osob_sql
             switch (result)
             {
                 case MessageBoxResult.Yes:
+                    var vysledky = Database.GetCatItemsAsyncbyItemID(ID).Result;
                     await Database.DeleteItemAsync(obj as TodoItem);
+                    
+                    //await Database.DeleteItemAsync(ID);
+                    //await Database.GetCatItemsAsyncbyItemID(ID).Result;
+                    foreach (CategoryItem catitem in vysledky)
+                    {
+                        await Database.DeleteItemAsync(catitem);
+                    }
                     MainPage Page1 = new MainPage();
                     this.NavigationService.Navigate(new MainPage());
                     break;
                 case MessageBoxResult.No:
                     break;
             }
-            
+
         }
 
         private static TodoItemDatabase _database;
@@ -72,7 +88,7 @@ namespace evidence_osob_sql
                 if (_database == null)
                 {
                     var fileHelper = new FileHelper();
-                    _database = new TodoItemDatabase(fileHelper.GetLocalFilePath("Evidence_osob.db3"));
+                    _database = new TodoItemDatabase(fileHelper.GetLocalFilePath("SQL_test.db3"));
                 }
                 return _database;
             }
@@ -81,15 +97,9 @@ namespace evidence_osob_sql
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             TodoItem item = new TodoItem();
-            item.ID = ID;
+            item.Id = ID;
             item.Name = Name.Text;
-            item.SurName = SurName.Text;
-            //DateTime BirthDate1 = DateTime.ParseExact(BirthDate.Content.ToString(), "dd / MM / yyyy HH: mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            item.BirthDate = birthdate;
-            item.RodneCislo = RodneCislo.Content.ToString();
-            item.Gender = Gender.Content.ToString();
-            item.Edited = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            item.Added = Added.Content.ToString();
+            item.Cost = Cost.Text;
             Database.SaveItemAsync(item);
             MessageBox.Show("Záznam byl aktualizován", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
